@@ -1,5 +1,5 @@
-FROM ghcr.io/carlossg/maven:3-graalvm-community-21 as build
-
+#FROM ghcr.io/carlossg/maven:3-graalvm-community-21 as build
+FROM maven:3-eclipse-temurin-21 as build
 # 工作目录
 WORKDIR /app
 
