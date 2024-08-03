@@ -1,0 +1,12 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+wechat:
+  appid: ${APPID:}
+  secret: ${SECRET:}
+  token: #
+  aesKey: #
+  msgDataFormat: JSON
+  cloud-env: #
