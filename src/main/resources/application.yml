@@ -9,4 +9,4 @@ wechat:
   token: #
   aesKey: #
   msgDataFormat: JSON
-  cloud-env: #
+  cloud-env: ${CLOUD}#
