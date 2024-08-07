@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import com.example.demo.model.LoginRequest;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.http.client.HttpClient;
@@ -21,6 +22,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class TestController {
 
+    @PostConstruct
+    public void postConstruct() {
+        log.info("TestController init");
+            /**
+             * 用以解决：javax.net.ssl.SSLHandshakeException: PKIX path building failed
+             * 参考：https://www.cnblogs.com/cloudapps/p/5022544.html
+             */
+            String mpCert = ClassLoader.getSystemResource("wx-mp-jssecacerts").getPath();
+            String maCert = ClassLoader.getSystemResource("wx-ma-jssecacerts").getPath();
+            System.setProperty("javax.net.ssl.trustStore", mpCert + "," + maCert);
+            String property = System.getProperty("javax.net.ssl.trustStore");
+            System.out.println("javax.net.ssl.trustStore=" + property);
+
+    }
 
     @Autowired
     private WxMaService wxMaService;
